@@ -1,5 +1,7 @@
 import json
 
+import json
+
 class User:
     def __init__(self, username, email, hashed_password):
         self.username = username
@@ -14,6 +16,7 @@ class User:
         }
 
 def load_users():
+    """Load users from the JSON file."""
     try:
         with open('users.json', 'r') as file:
             return json.load(file)
@@ -21,8 +24,10 @@ def load_users():
         return []
 
 def save_users(users):
+    """Save users to the JSON file."""
     with open('users.json', 'w') as file:
         json.dump(users, file, indent=4)
+
 
 class Product:
     def __init__(self, product_id, name, description, price, stock):
