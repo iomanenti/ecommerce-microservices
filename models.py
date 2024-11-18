@@ -1,7 +1,5 @@
 import json
 
-import json
-
 class User:
     def __init__(self, username, email, hashed_password):
         self.username = username
@@ -18,14 +16,14 @@ class User:
 def load_users():
     """Load users from the JSON file."""
     try:
-        with open('users.json', 'r') as file:
+        with open('databases/users.json', 'r') as file:
             return json.load(file)
     except FileNotFoundError:
         return []
 
 def save_users(users):
     """Save users to the JSON file."""
-    with open('users.json', 'w') as file:
+    with open('databases/users.json', 'w') as file:
         json.dump(users, file, indent=4)
 
 
@@ -48,13 +46,13 @@ class Product:
 
 def load_products():
     try:
-        with open('products.json', 'r') as file:
+        with open('databases/products.json', 'r') as file:
             return json.load(file)
     except FileNotFoundError:
         return []
 
 def save_products(products):
-    with open('products.json', 'w') as file:
+    with open('databases/products.json', 'w') as file:
         json.dump(products, file, indent=4)
 
 class Cart:
@@ -71,14 +69,14 @@ class Cart:
 def load_carts():
     """Load all carts from the JSON file."""
     try:
-        with open('carts.json', 'r') as file:
+        with open('databases/carts.json', 'r') as file:
             return json.load(file)
     except FileNotFoundError:
         return []
 
 def save_carts(carts):
     """Save all carts back to the JSON file."""
-    with open('carts.json', 'w') as file:
+    with open('databases/carts.json', 'w') as file:
         json.dump(carts, file, indent=4)
 
 
@@ -100,12 +98,12 @@ class Order:
 def load_orders():
     """Load orders from the JSON file."""
     try:
-        with open('orders.json', 'r') as file:
+        with open('databases/orders.json', 'r') as file:
             return json.load(file)
     except FileNotFoundError:
         return []
 
 def save_orders(orders):
     """Save orders to the JSON file."""
-    with open('orders.json', 'w') as file:
+    with open('databases/orders.json', 'w') as file:
         json.dump(orders, file, indent=4)

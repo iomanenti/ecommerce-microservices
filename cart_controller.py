@@ -53,14 +53,14 @@ def clear_cart(user_id):
 def save_ordered_cart(cart):
     """Append the ordered cart to the ordered carts file."""
     try:
-        with open('carts.json', 'r') as file:
+        with open('databases/carts.json', 'r') as file:
             carts = json.load(file)
     except FileNotFoundError:
         carts = []
 
     carts.append(cart)
 
-    with open('carts.json', 'w') as file:
+    with open('databases/carts.json', 'w') as file:
         json.dump(carts, file, indent=4)
 
 if __name__ == '__main__':
