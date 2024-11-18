@@ -3,13 +3,18 @@
 {% block content %}
 <h2>Your Cart</h2>
 <ul>
-    {% for item in cart_items %}
-    <li>
-        {{ item.name }} - ${{ item.price }} x {{ item.quantity }}
-    </li>
-    {% endfor %}
+    {% if cart_items %}
+        {% for item in cart_items %}
+        <li>
+            {{ item.name }} - ${{ item.price }} x {{ item.quantity }}
+        </li>
+        {% endfor %}
+        <p>Total Price: ${{ total_price }}</p>
+        <form action="{{ url_for('place_order', user_id=user_id) }}" method="post">
+            <button type="submit">Place Order</button>
+        </form>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
 </ul>
-<form action="{{ url_for('place_order', user_id=user_id) }}" method="post">
-    <button type="submit">Place Order</button>
-</form>
 {% endblock %}

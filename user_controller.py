@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/register', methods=['POST'])
 def register_user():
-    """Register a new user."""
+    """Register a new user with optional admin role."""
     data = request.json
     users = load_users()
 
@@ -17,8 +17,15 @@ def register_user():
         return jsonify({"error": "Email already exists"}), 400
 
     hashed_pw = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-    new_user = User(data['username'], data['email'], hashed_pw)
-    users.append(new_user.to_dict())
+    is_admin = data.get('is_admin', False)
+
+    new_user = {
+        "username": data['username'],
+        "email": data['email'],
+        "hashed_password": hashed_pw,
+        "is_admin": is_admin
+    }
+    users.append(new_user)
     save_users(users)
 
     return jsonify({"message": "User registered successfully"}), 201
@@ -26,7 +33,7 @@ def register_user():
 
 @app.route('/login', methods=['POST'])
 def login_user():
-    """Log in an existing user."""
+    """Log in an existing user and return their role."""
     data = request.json
     users = load_users()
 
@@ -34,8 +41,10 @@ def login_user():
     if not user or not bcrypt.checkpw(data['password'].encode('utf-8'), user['hashed_password'].encode('utf-8')):
         return jsonify({"error": "Invalid username or password"}), 401
 
-    return jsonify({"message": f"Welcome, {user['username']}!"}), 200
-
+    return jsonify({
+        "message": f"Welcome, {user['username']}!",
+        "is_admin": user['is_admin']
+    }), 200
 
 @app.route('/update-account/<username>', methods=['PUT'])
 def update_account(username):

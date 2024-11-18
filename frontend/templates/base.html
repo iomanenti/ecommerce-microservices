@@ -10,13 +10,21 @@
     <header>
         <h1>Simple E-commerce</h1>
         <nav>
-            <a href="{{ url_for('register') }}">Register</a>
-            <a href="{{ url_for('login') }}">Login</a>
-            <a href="{{ url_for('home') }}">Home</a>
-            <a href="{{ url_for('products') }}">Products</a>
-        </nav>
+            {% if not session.get('username') %}
+                <!-- Show Register and Login links if the user is not logged in -->
+                <a href="{{ url_for('register') }}">Register</a>
+                <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+                <!-- Show Welcome message, Cart, and Logout link if the user is logged in -->
+                <span>Welcome, <b>{{ session['username'] }}</b>!</span>
+                <a href="{{ url_for('products') }}">Products</a>
+                <a href="{{ url_for('cart', user_id=session['username']) }}">Cart</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+        </nav>    
     </header>
     <main>
+        <!-- Flash messages for user feedback -->
         {% with messages = get_flashed_messages(with_categories=True) %}
             {% if messages %}
                 <ul>

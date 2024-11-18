@@ -1,15 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Products</h2>
+<h2>Product Catalog</h2>
 <ul>
     {% for product in products %}
     <li>
         <strong>{{ product.name }}</strong> - ${{ product.price }}
-        <form action="{{ url_for('add_to_cart', user_id=1, product_id=product.product_id) }}" method="post">
+        <p>{{ product.description }}</p>
+        <p>Stock: {{ product.stock }}</p>
+        <form action="{{ url_for('add_to_cart', user_id=session['username'], product_id=product.product_id) }}" method="post">
+            <input type="hidden" name="name" value="{{ product.name }}">
+            <input type="hidden" name="price" value="{{ product.price }}">
+            <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}" required>
             <button type="submit">Add to Cart</button>
         </form>
+        {% if is_admin %}
+        <form action="{{ url_for('delete_product', product_id=product.product_id) }}" method="post">
+            <button type="submit">Delete</button>
+        </form>
+        <form action="{{ url_for('edit_product', product_id=product.product_id) }}" method="post">
+            <input type="text" name="name" placeholder="Name" value="{{ product.name }}">
+            <input type="text" name="description" placeholder="Description" value="{{ product.description }}">
+            <input type="number" name="price" placeholder="Price" value="{{ product.price }}">
+            <input type="number" name="stock" placeholder="Stock" value="{{ product.stock }}">
+            <button type="submit">Edit</button>
+        </form>
+        {% endif %}
     </li>
     {% endfor %}
 </ul>
+{% if is_admin %}
+<h3>Add a New Product</h3>
+<form action="{{ url_for('add_product') }}" method="post">
+    <input type="text" name="name" placeholder="Product Name" required>
+    <input type="text" name="description" placeholder="Description" required>
+    <input type="number" name="price" placeholder="Price" required>
+    <input type="number" name="stock" placeholder="Stock" required>
+    <button type="submit">Add Product</button>
+</form>
+{% endif %}
 {% endblock %}
+
+
+
+

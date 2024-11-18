@@ -69,6 +69,7 @@ class Cart:
         }
 
 def load_carts():
+    """Load all carts from the JSON file."""
     try:
         with open('carts.json', 'r') as file:
             return json.load(file)
@@ -76,6 +77,7 @@ def load_carts():
         return []
 
 def save_carts(carts):
+    """Save all carts back to the JSON file."""
     with open('carts.json', 'w') as file:
         json.dump(carts, file, indent=4)
 
@@ -96,6 +98,7 @@ class Order:
         }
 
 def load_orders():
+    """Load orders from the JSON file."""
     try:
         with open('orders.json', 'r') as file:
             return json.load(file)
@@ -103,5 +106,6 @@ def load_orders():
         return []
 
 def save_orders(orders):
+    """Save orders to the JSON file."""
     with open('orders.json', 'w') as file:
         json.dump(orders, file, indent=4)
