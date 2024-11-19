@@ -3,5 +3,23 @@
         "user_id": "system-admin",
         "items": [],
         "status": "active"
+    },
+    {
+        "user_id": "iomanenti-admin",
+        "items": [
+            {
+                "product_id": 1,
+                "name": "Laptop",
+                "price": 1200.0,
+                "quantity": 1
+            },
+            {
+                "product_id": 2,
+                "name": "Smartphone",
+                "price": 800.0,
+                "quantity": 7
+            }
+        ],
+        "status": "active"
     }
 ]
