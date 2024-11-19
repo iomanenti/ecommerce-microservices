@@ -541,5 +541,119 @@
             }
         ],
         "total_price": 6250.0
+    },
+    {
+        "order_id": 28,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Nintendo Switch",
+                "price": 250.0,
+                "product_id": 3,
+                "quantity": 1
+            },
+            {
+                "name": "Smartphone",
+                "price": 800.0,
+                "product_id": 2,
+                "quantity": 1
+            }
+        ],
+        "total_price": 1050.0
+    },
+    {
+        "order_id": 29,
+        "user_id": "iomanenti-admin",
+        "items": [
+            {
+                "name": "Laptop",
+                "price": 1200.0,
+                "product_id": 1,
+                "quantity": 1
+            },
+            {
+                "name": "Apple iPhone X",
+                "price": 1000.0,
+                "product_id": 4,
+                "quantity": 5
+            }
+        ],
+        "total_price": 6200.0
+    },
+    {
+        "order_id": 30,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Apple iPhone X",
+                "price": 1000.0,
+                "product_id": 4,
+                "quantity": 3
+            },
+            {
+                "name": "Laptop",
+                "price": 1200.0,
+                "product_id": 1,
+                "quantity": 4
+            }
+        ],
+        "total_price": 7800.0
+    },
+    {
+        "order_id": 31,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Apple iPhone X",
+                "price": 1000.0,
+                "product_id": 4,
+                "quantity": 3
+            },
+            {
+                "name": "Laptop",
+                "price": 1200.0,
+                "product_id": 1,
+                "quantity": 4
+            }
+        ],
+        "total_price": 7800.0
+    },
+    {
+        "order_id": 32,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Apple iPhone X",
+                "price": 1000.0,
+                "product_id": 4,
+                "quantity": 3
+            },
+            {
+                "name": "Nintendo Switch",
+                "price": 250.0,
+                "product_id": 3,
+                "quantity": 2
+            }
+        ],
+        "total_price": 3500.0
+    },
+    {
+        "order_id": 33,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Apple iPhone 15 Pro Max",
+                "price": 1200.0,
+                "product_id": 4,
+                "quantity": 3
+            },
+            {
+                "name": "Smartphone",
+                "price": 800.0,
+                "product_id": 2,
+                "quantity": 1
+            }
+        ],
+        "total_price": 4400.0
     }
 ]

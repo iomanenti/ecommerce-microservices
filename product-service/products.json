@@ -2,7 +2,7 @@
     {
         "product_id": 1,
         "name": "Laptop",
-        "description": "A powerful laptop for work and play.",
+        "description": "A powerful laptop for work and play on your daily basis",
         "price": 1200.0,
         "stock": 10
     },
@@ -22,9 +22,9 @@
     },
     {
         "product_id": 4,
-        "name": "Apple iPhone X",
-        "description": "Outstanding smartphone from Apple",
-        "price": 1000.0,
+        "name": "Apple iPhone 15 Pro Max",
+        "description": "Most recent Apple iPhone",
+        "price": 1200.0,
         "stock": 15
     }
 ]

@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify, json
-from models import Cart, load_carts, save_carts
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from shared.models import Cart, load_carts, save_carts
 
 app = Flask(__name__)
 
@@ -38,7 +41,6 @@ def add_to_cart(user_id):
     save_carts(carts)
     return jsonify({"message": "Item added to cart"}), 201
 
-
 @app.route('/cart/<string:user_id>', methods=['DELETE'])
 def clear_cart(user_id):
     """Clear the user's cart after saving it to the ordered carts."""
@@ -74,14 +76,14 @@ def delete_product_from_cart(user_id, product_id):
 def save_ordered_cart(cart):
     """Append the ordered cart to the ordered carts file."""
     try:
-        with open('databases/carts.json', 'r') as file:
+        with open('cart-service/carts.json', 'r') as file:
             carts = json.load(file)
     except FileNotFoundError:
         carts = []
 
     carts.append(cart)
 
-    with open('databases/carts.json', 'w') as file:
+    with open('cart-service/carts.json', 'w') as file:
         json.dump(carts, file, indent=4)
 
 if __name__ == '__main__':

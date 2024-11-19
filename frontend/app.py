@@ -12,10 +12,12 @@ ORDER_SERVICE_URL = "http://localhost:5004"
 
 @app.route('/')
 def home():
+    """Render the home page."""
     return render_template('base.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    """Handle user registration."""
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
@@ -40,6 +42,7 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """Handle user login."""
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -59,12 +62,14 @@ def login():
 
 @app.route('/logout')
 def logout():
+    """Handle user logout."""
     session.clear()  # Clear all session data
     flash("You have been logged out.", "info")
     return redirect(url_for('home'))
 
 @app.route('/account/<username>', methods=['GET', 'POST'])
 def account(username):
+    """Handle account updates."""
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -84,6 +89,7 @@ def account(username):
 
 @app.route('/delete-account/<username>', methods=['POST'])
 def delete_account(username):
+    """Handle account deletion."""
     response = requests.delete(f"{USER_SERVICE_URL}/delete-account/{username}")
     if response.status_code == 200:
         flash('Account deleted successfully!', 'success')
@@ -124,7 +130,7 @@ def delete_from_cart(user_id, product_id):
 
 @app.route('/place-order/<string:user_id>', methods=['POST'])
 def place_order(user_id):
-    """Place an order and stack the cart."""
+    """Place an order and clear the cart."""
     cart_response = requests.get(f"{CART_SERVICE_URL}/cart/{user_id}")
     cart = cart_response.json()
     cart_items = cart.get('items', [])
@@ -139,14 +145,15 @@ def place_order(user_id):
 
 @app.route('/products', methods=['GET', 'POST'])
 def products():
+    """Display all products."""
     response = requests.get(f"{PRODUCT_SERVICE_URL}/products")
     products = response.json() if response.status_code == 200 else []
     is_admin = session.get('is_admin', False)  # Retrieve is_admin value from the session
     return render_template('products.html', products=products, is_admin=is_admin)
 
-
 @app.route('/add-product', methods=['POST'])
 def add_product():
+    """Add a new product (Admin only)."""
     data = {
         "name": request.form['name'],
         "description": request.form['description'],
@@ -172,7 +179,6 @@ def edit_product(product_id):
         flash(response.json().get('error', 'Failed to update product'), "danger")
     return redirect(url_for('products'))
 
-
 @app.route('/products/<int:product_id>/delete', methods=['POST'])
 def delete_product(product_id):
     """Delete a product (Admin only)."""
@@ -182,8 +188,6 @@ def delete_product(product_id):
     else:
         flash(response.json().get('error', 'Failed to delete product'), "danger")
     return redirect(url_for('products'))
-
-
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
