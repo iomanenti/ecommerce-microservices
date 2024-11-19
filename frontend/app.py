@@ -115,6 +115,13 @@ def add_to_cart(user_id, product_id):
     flash(f"Added {data['name']} to your cart.", "success")
     return redirect(url_for('products'))
 
+@app.route('/cart/<string:user_id>/product/<int:product_id>', methods=['POST'])
+def delete_from_cart(user_id, product_id):
+    """Remove a specific product from the cart."""
+    requests.delete(f"{CART_SERVICE_URL}/cart/{user_id}/product/{product_id}")
+    flash("Product removed from cart.", "success")
+    return redirect(url_for('cart', user_id=user_id))
+
 @app.route('/place-order/<string:user_id>', methods=['POST'])
 def place_order(user_id):
     """Place an order and stack the cart."""
@@ -149,21 +156,33 @@ def add_product():
     requests.post(f"{PRODUCT_SERVICE_URL}/products", json=data)
     return redirect(url_for('products'))
 
-@app.route('/edit-product/<int:product_id>', methods=['POST'])
+@app.route('/products/<int:product_id>/edit', methods=['POST'])
 def edit_product(product_id):
+    """Edit a product's details (Admin only)."""
     data = {
         "name": request.form['name'],
         "description": request.form['description'],
         "price": float(request.form['price']),
         "stock": int(request.form['stock'])
     }
-    requests.put(f"{PRODUCT_SERVICE_URL}/products/{product_id}", json=data)
+    response = requests.put(f"{PRODUCT_SERVICE_URL}/products/{product_id}", json=data)
+    if response.status_code == 200:
+        flash("Product updated successfully.", "success")
+    else:
+        flash(response.json().get('error', 'Failed to update product'), "danger")
     return redirect(url_for('products'))
 
-@app.route('/delete-product/<int:product_id>', methods=['POST'])
+
+@app.route('/products/<int:product_id>/delete', methods=['POST'])
 def delete_product(product_id):
-    requests.delete(f"{PRODUCT_SERVICE_URL}/products/{product_id}")
+    """Delete a product (Admin only)."""
+    response = requests.delete(f"{PRODUCT_SERVICE_URL}/products/{product_id}")
+    if response.status_code == 200:
+        flash("Product deleted successfully.", "success")
+    else:
+        flash(response.json().get('error', 'Failed to delete product'), "danger")
     return redirect(url_for('products'))
+
 
 
 if __name__ == '__main__':

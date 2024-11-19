@@ -17,14 +17,14 @@
         "product_id": 3,
         "name": "Nintendo Switch",
         "description": "Excellent VideoGame",
-        "price": 300.0,
+        "price": 250.0,
         "stock": 30
     },
     {
         "product_id": 4,
-        "name": "Microsoft Xbox",
-        "description": "Excellent Microsoft VideoGame",
-        "price": 350.0,
-        "stock": 20
+        "name": "Apple iPhone X",
+        "description": "Outstanding smartphone",
+        "price": 1000.0,
+        "stock": 15
     }
 ]

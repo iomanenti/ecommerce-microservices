@@ -376,5 +376,151 @@
             }
         ],
         "total_price": 1700.0
+    },
+    {
+        "order_id": 19,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Nintendo Switch",
+                "price": 300.0,
+                "product_id": 3,
+                "quantity": 1
+            },
+            {
+                "name": "Laptop",
+                "price": 1200.0,
+                "product_id": 1,
+                "quantity": 6
+            }
+        ],
+        "total_price": 7500.0
+    },
+    {
+        "order_id": 20,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Laptop",
+                "price": 1200.0,
+                "product_id": 1,
+                "quantity": 1
+            },
+            {
+                "name": "Smartphone",
+                "price": 800.0,
+                "product_id": 2,
+                "quantity": 1
+            },
+            {
+                "name": "Nintendo Switch",
+                "price": 300.0,
+                "product_id": 3,
+                "quantity": 1
+            },
+            {
+                "name": "Microsoft Xbox",
+                "price": 350.0,
+                "product_id": 4,
+                "quantity": 1
+            }
+        ],
+        "total_price": 2650.0
+    },
+    {
+        "order_id": 21,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Laptop",
+                "price": 1200.0,
+                "product_id": 1,
+                "quantity": 10
+            },
+            {
+                "name": "Microsoft Xbox",
+                "price": 350.0,
+                "product_id": 4,
+                "quantity": 4
+            }
+        ],
+        "total_price": 13400.0
+    },
+    {
+        "order_id": 22,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Laptop",
+                "price": 1200.0,
+                "product_id": 1,
+                "quantity": 10
+            },
+            {
+                "name": "Microsoft Xbox",
+                "price": 350.0,
+                "product_id": 4,
+                "quantity": 4
+            }
+        ],
+        "total_price": 13400.0
+    },
+    {
+        "order_id": 23,
+        "user_id": "iomanenti-admin",
+        "items": [
+            {
+                "name": "Microsoft Xbox",
+                "price": 350.0,
+                "product_id": 4,
+                "quantity": 5
+            }
+        ],
+        "total_price": 1750.0
+    },
+    {
+        "order_id": 24,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Laptop",
+                "price": 1200.0,
+                "product_id": 1,
+                "quantity": 5
+            }
+        ],
+        "total_price": 6000.0
+    },
+    {
+        "order_id": 25,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Laptop",
+                "price": 1200.0,
+                "product_id": 1,
+                "quantity": 5
+            }
+        ],
+        "total_price": 6000.0
+    },
+    {
+        "order_id": 26,
+        "user_id": "iomanenti",
+        "items": [
+            {
+                "name": "Smartphone",
+                "price": 800.0,
+                "product_id": 2,
+                "quantity": 1
+            },
+            {
+                "name": "Apple iPhone X",
+                "price": 1000.0,
+                "product_id": 4,
+                "quantity": 1
+            }
+        ],
+        "total_price": 1800.0
     }
 ]

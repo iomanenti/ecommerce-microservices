@@ -14,16 +14,21 @@ def get_cart(user_id):
 
 @app.route('/cart/<string:user_id>', methods=['POST'])
 def add_to_cart(user_id):
-    """Add a product to the user's cart."""
+    """Add a product to the user's active cart."""
     data = request.json
     carts = load_carts()
-    cart = next((c for c in carts if c['user_id'] == user_id), None)
+    cart = next((c for c in carts if c['user_id'] == user_id and c.get('status') == 'active'), None)
 
     if not cart:
-        cart = Cart(user_id, []).to_dict()
+        # Create a new active cart if it doesn't exist
+        cart = {
+            "user_id": user_id,
+            "items": [],
+            "status": "active"
+        }
         carts.append(cart)
 
-    # Check if product is already in the cart
+    # Check if the product already exists in the cart
     existing_item = next((item for item in cart['items'] if item['product_id'] == data['product_id']), None)
     if existing_item:
         existing_item['quantity'] += data['quantity']
@@ -32,6 +37,7 @@ def add_to_cart(user_id):
 
     save_carts(carts)
     return jsonify({"message": "Item added to cart"}), 201
+
 
 @app.route('/cart/<string:user_id>', methods=['DELETE'])
 def clear_cart(user_id):
@@ -49,6 +55,21 @@ def clear_cart(user_id):
         save_carts(carts)
 
     return jsonify({"message": "Cart cleared and saved to orders"}), 200
+
+@app.route('/cart/<string:user_id>/product/<int:product_id>', methods=['DELETE'])
+def delete_product_from_cart(user_id, product_id):
+    """Delete a single product from the user's cart."""
+    carts = load_carts()
+    cart = next((c for c in carts if c['user_id'] == user_id and c.get('status') == 'active'), None)
+
+    if not cart:
+        return jsonify({"error": "Cart not found"}), 404
+
+    # Filter out the product to be deleted
+    cart['items'] = [item for item in cart['items'] if item['product_id'] != product_id]
+    save_carts(carts)
+
+    return jsonify({"message": "Product removed from cart"}), 200
 
 def save_ordered_cart(cart):
     """Append the ordered cart to the ordered carts file."""

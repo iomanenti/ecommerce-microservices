@@ -10,5 +10,11 @@
         "email": "joao.manenti@outlook.com",
         "hashed_password": "$2b$12$bcBfCL7jhe1jaTjIvq9O1.Q/nWZYn69Tjc1bSaiwqNRHJRCjYHo9a",
         "is_admin": true
+    },
+    {
+        "username": "system-admin",
+        "email": "system-admin@admin.com",
+        "hashed_password": "$2b$12$XMMOekEelld5Mar4vg9PzeeHnx88Y3//NQLDiPaKuxvVMwGEaE5A.",
+        "is_admin": true
     }
 ]

@@ -45,6 +45,7 @@ class Product:
         }
 
 def load_products():
+    """Load all products from the JSON file."""
     try:
         with open('databases/products.json', 'r') as file:
             return json.load(file)
@@ -52,8 +53,10 @@ def load_products():
         return []
 
 def save_products(products):
+    """Save all products back to the JSON file."""
     with open('databases/products.json', 'w') as file:
         json.dump(products, file, indent=4)
+
 
 class Cart:
     def __init__(self, user_id, items):

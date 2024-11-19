@@ -14,8 +14,10 @@
             <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}" required>
             <button type="submit">Add to Cart</button>
         </form>
-        {% if is_admin %}
+
+        {% if session['is_admin'] %}
         <form action="{{ url_for('delete_product', product_id=product.product_id) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE">
             <button type="submit">Delete</button>
         </form>
         <form action="{{ url_for('edit_product', product_id=product.product_id) }}" method="post">
@@ -29,7 +31,7 @@
     </li>
     {% endfor %}
 </ul>
-{% if is_admin %}
+{% if session['is_admin'] %}
 <h3>Add a New Product</h3>
 <form action="{{ url_for('add_product') }}" method="post">
     <input type="text" name="name" placeholder="Product Name" required>
@@ -40,7 +42,3 @@
 </form>
 {% endif %}
 {% endblock %}
-
-
-
-
