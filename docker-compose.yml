@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  user_service:
+    build:
+      context: ./user_service
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./user_service:/app
+    networks:
+      - app_network
+
+  product_service:
+    build:
+      context: ./product_service
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./product_service:/app
+    networks:
+      - app_network
+
+  cart_service:
+    build:
+      context: ./cart_service
+    ports:
+      - "5003:5003"
+    volumes:
+      - ./cart_service:/app
+    networks:
+      - app_network
+
+  order_service:
+    build:
+      context: ./order_service
+    ports:
+      - "5004:5004"
+    volumes:
+      - ./order_service:/app
+    networks:
+      - app_network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./frontend:/app
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
